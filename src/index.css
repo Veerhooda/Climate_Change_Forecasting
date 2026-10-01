@@ -1,0 +1,104 @@
+/* ==========================================================================
+   GLOBAL RESET & FOUNDATIONAL TOKENS
+   Intelligent Climate Change Forecasting — Monumental Climate Editorial System
+   ========================================================================== */
+
+:root {
+  /* Restrained, literary color palette - Anthropic / Claude inspired */
+  --color-cosmos-deep: #080a0d;
+  --color-cosmos-surface: #101317;
+  --color-cosmos-border: rgba(250, 249, 245, 0.08);
+
+  /* Anthropic signature warm hues */
+  --color-ivory: #faf9f5;
+  --color-ivory-dim: #ede8df;
+  --color-stone: #c5bfb5;
+  --color-clay: #d97757;
+  --color-clay-hover: #e28566;
+  --color-clay-subtle: rgba(217, 119, 87, 0.15);
+  --color-moss: #547a6b;
+  --color-alert: #e07a5f;
+  --color-ink: #101317;
+
+  --color-text-primary: #faf9f5;
+  --color-text-secondary: #c5bfb5;
+  --color-text-tertiary: #8a857b;
+  --color-text-accent: #d97757;
+
+  /* Typography Stacks - Monumental Cormorant Garamond & Newsreader */
+  --font-monument: 'Cormorant Garamond', 'Newsreader', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', 'Newsreader', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Motion & Easing curves */
+  --ease-claude: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Elevation & glass */
+  --glass-bg: rgba(14, 17, 21, 0.72);
+  --glass-border: rgba(250, 249, 245, 0.1);
+  --glass-blur: blur(16px);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--color-cosmos-deep);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  background-attachment: fixed;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  background-color: var(--color-cosmos-deep);
+}
+
+/* Custom quiet scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #080a0d;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(250, 249, 245, 0.16);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(217, 119, 87, 0.4);
+}
+
+/* Selection */
+::selection {
+  background: rgba(217, 119, 87, 0.35);
+  color: #ffffff;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

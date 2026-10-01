@@ -1,0 +1,1552 @@
+/* ==========================================================================
+   HERO EXPERIENCE STYLES
+   Intelligent Climate Change Forecasting
+   Monumental Climate Editorial System & Immersive Multi-Sensory Environment
+   ========================================================================== */
+
+/* Main outer scroll track - creates the scroll runway (400vh) */
+.hero-scroll-track {
+  position: relative;
+  width: 100%;
+  height: 400vh;
+  background-color: var(--color-cosmos-deep);
+}
+
+/* Pinned Viewport - pinned with perspective for 3D cursor inertia tilt */
+.hero-pinned-viewport {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-cosmos-deep);
+  transition: background-color 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: background-color;
+  user-select: none;
+  perspective: 1200px;
+}
+
+/* --------------------------------------------------------------------------
+   AMBIENT ATMOSPHERE & BACKGROUND CANVAS
+   -------------------------------------------------------------------------- */
+
+.hero-ambient-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-glow-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.8s ease;
+  will-change: opacity, transform;
+}
+
+/* Subtle organic warm luminescence behind Earth in Scene 1 */
+.earth-corona-glow {
+  position: absolute;
+  top: 54%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  width: min(780px, 50vw);
+  height: min(780px, 50vw);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(217, 119, 87, 0.18) 0%,
+    rgba(69, 148, 141, 0.12) 35%,
+    transparent 70%
+  );
+  filter: blur(55px);
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: screen;
+}
+
+/* Atmospheric mist layer for clouds/birds */
+.atmospheric-mist-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  overflow: hidden;
+  mix-blend-mode: screen;
+  transition: opacity 0.6s ease;
+}
+
+.mist-cloud {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(245, 242, 235, 0.16) 0%, rgba(200, 220, 230, 0.06) 50%, transparent 75%);
+  filter: blur(40px);
+  will-change: transform;
+}
+
+.mist-cloud-1 {
+  width: 80vw;
+  height: 50vh;
+  top: 30%;
+  left: -15%;
+  animation: driftMist1 28s infinite alternate ease-in-out;
+}
+
+.mist-cloud-2 {
+  width: 70vw;
+  height: 45vh;
+  top: 45%;
+  right: -10%;
+  animation: driftMist2 34s infinite alternate ease-in-out;
+}
+
+@keyframes driftMist1 {
+  0% { transform: translateX(0) translateY(0); }
+  100% { transform: translateX(8vw) translateY(-4vh); }
+}
+
+@keyframes driftMist2 {
+  0% { transform: translateX(0) translateY(0); }
+  100% { transform: translateX(-6vw) translateY(3vh); }
+}
+
+/* Canopy forest dust motes */
+.canopy-spores-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+/* Subtle chimney smoke waft over cabin in Scene 4 */
+.chimney-smoke-accent {
+  position: absolute;
+  bottom: 27%;
+  right: 21%;
+  width: 18px;
+  height: 95px;
+  pointer-events: none;
+  z-index: 6;
+  opacity: 0;
+  background: linear-gradient(to top, rgba(250, 245, 235, 0.28), rgba(250, 245, 235, 0.06) 60%, transparent);
+  filter: blur(5px);
+  border-radius: 8px;
+  transform-origin: bottom center;
+  animation: smokeWaft 4.5s infinite ease-in-out;
+}
+
+@keyframes smokeWaft {
+  0% { transform: scaleX(0.9) scaleY(0.95) skewX(0deg); opacity: 0.25; }
+  50% { transform: scaleX(1.3) scaleY(1.1) skewX(-4deg) translateX(-4px); opacity: 0.42; }
+  100% { transform: scaleX(0.9) scaleY(0.95) skewX(0deg); opacity: 0.25; }
+}
+
+/* Cinematic film grain & edge vignette */
+.hero-vignette-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 8;
+  background: radial-gradient(circle at center, transparent 45%, rgba(8, 10, 13, 0.35) 80%, rgba(8, 10, 13, 0.85) 100%);
+}
+
+.hero-film-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* --------------------------------------------------------------------------
+   FULL-BLEED 16:9 CINEMATIC VISUAL STAGE WITH 3D CURSOR INERTIA PARALLAX
+   -------------------------------------------------------------------------- */
+
+.hero-visual-stage {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 3;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.08s linear;
+}
+
+.wide-scene-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+}
+
+.wide-scene-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  image-rendering: high-quality;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* --------------------------------------------------------------------------
+   MONUMENTAL CLIMATE STORYTELLING EDITORIAL TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+
+.hero-editorial-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Left-aligned monumental column */
+.initial-hero-column {
+  position: absolute;
+  left: clamp(2.5rem, 8vw, 8rem);
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: min(640px, 50vw);
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  pointer-events: auto;
+  will-change: transform, opacity;
+}
+
+/* Scientific Climate Kicker */
+.climate-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.kicker-line {
+  width: 28px;
+  height: 1.5px;
+  background-color: var(--color-clay);
+  display: inline-block;
+}
+
+.kicker-text {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-stone);
+}
+
+/* Monumental Headline: Cormorant Garamond Serif with Sculpted Weight */
+.climate-monumental-headline {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.headline-row {
+  display: block;
+  overflow: visible;
+}
+
+.row-intro {
+  margin-bottom: 0.2rem;
+}
+
+.word-tag-lead {
+  font-family: var(--font-mono);
+  font-size: clamp(0.85rem, 1.15vw, 1.1rem);
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-clay);
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.row-prime {
+  font-family: var(--font-monument);
+  font-size: clamp(3.6rem, 5.8vw, 7.2rem);
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  color: var(--color-ivory);
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.7);
+}
+
+.word-prime {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.row-climax {
+  font-family: var(--font-monument);
+  font-size: clamp(3.8rem, 6.2vw, 7.6rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  color: #fbf7ee;
+  text-shadow: 0 0 45px rgba(217, 119, 87, 0.3);
+}
+
+.word-climax {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* Narrative Story Paragraph */
+.climate-story-body {
+  font-family: var(--font-sans);
+  font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+  font-weight: 300;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+  color: var(--color-stone);
+  max-width: 520px;
+  margin: 0;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+  will-change: transform, opacity;
+}
+
+/* Quiet Planetary Vital Signs Data Ticker */
+.climate-telemetry-ticker {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.6rem 1.1rem;
+  border-left: 2px solid var(--color-clay);
+  background: rgba(16, 20, 25, 0.65);
+  border-radius: 0 6px 6px 0;
+  backdrop-filter: blur(12px);
+  width: fit-content;
+  will-change: transform, opacity;
+}
+
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.ticker-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  color: var(--color-text-tertiary);
+}
+
+.ticker-val {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--color-ivory);
+}
+
+.ticker-val.alert {
+  color: var(--color-alert);
+}
+
+.ticker-sep {
+  color: rgba(250, 249, 245, 0.15);
+  font-size: 0.7rem;
+}
+
+/* Claude-Style Tactile Action Button */
+.climate-action-group {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 0.4rem;
+  will-change: transform, opacity;
+}
+
+.climate-btn-monumental {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.05rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.96rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--color-ivory);
+  background: rgba(22, 26, 32, 0.85);
+  border: 1px solid rgba(250, 249, 245, 0.18);
+  border-radius: 8px; /* Clean rectangular rounding, NOT capsule */
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.35s var(--ease-claude);
+  backdrop-filter: blur(14px);
+  will-change: transform, box-shadow, border-color;
+}
+
+.climate-btn-monumental::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(217, 119, 87, 0.18),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.climate-btn-monumental:hover {
+  transform: translateY(-2px);
+  background: rgba(28, 33, 40, 0.95);
+  border-color: rgba(217, 119, 87, 0.7);
+  box-shadow: 
+    0 10px 30px -4px rgba(217, 119, 87, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.climate-btn-monumental:hover::before {
+  transform: translateX(100%);
+}
+
+.btn-arrow-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-clay);
+  transition: transform 0.35s var(--ease-claude);
+}
+
+.climate-btn-monumental:hover .btn-arrow-wrap {
+  transform: translate(3px, -3px);
+  color: #ffffff;
+}
+
+.cta-descent-cue {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+/* --------------------------------------------------------------------------
+   CINEMATIC TRANSITIONAL NARRATIVE (MONUMENTAL CORMORANT SERIF)
+   -------------------------------------------------------------------------- */
+
+.scroll-narrative-overlay {
+  position: absolute;
+  left: clamp(2.5rem, 8vw, 8rem);
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: min(580px, 48vw);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  pointer-events: none;
+  z-index: 12;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.descent-stage-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--color-clay);
+  text-transform: uppercase;
+}
+
+.monumental-narrative-title {
+  font-family: var(--font-monument);
+  font-size: clamp(2.8rem, 4.4vw, 5rem);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: var(--color-ivory);
+  margin: 0;
+  text-shadow: 0 4px 25px rgba(0, 0, 0, 0.7);
+}
+
+.italic-accent {
+  font-style: italic;
+  font-weight: 400;
+  color: #fbf7ee;
+  font-family: var(--font-monument);
+}
+
+.narrative-annotation {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--color-stone);
+  max-width: 460px;
+  margin-top: 0.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   QUIET CINEMATIC FINAL FRAME (CABIN & HUMAN OBSERVER)
+   -------------------------------------------------------------------------- */
+
+.final-frame-overlay {
+  position: absolute;
+  left: clamp(2.5rem, 8vw, 8rem);
+  bottom: clamp(3rem, 12vh, 6rem);
+  max-width: min(580px, 46vw);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  pointer-events: auto;
+  z-index: 12;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.monumental-final-title {
+  font-family: var(--font-monument);
+  font-size: clamp(2.6rem, 3.8vw, 4.4rem);
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  color: var(--color-ivory);
+  margin: 0;
+  text-shadow: 0 4px 25px rgba(0, 0, 0, 0.7);
+}
+
+.monumental-final-body {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--color-stone);
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   CLAUDE MASTHEAD & PROCEDURAL SOUNDSCAPE ENGINE
+   -------------------------------------------------------------------------- */
+
+.claude-masthead {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: clamp(1.4rem, 3.2vh, 2.2rem) clamp(2rem, 5vw, 4rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.claude-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--color-ivory);
+}
+
+.claude-brand-symbol {
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background-color: var(--color-clay);
+  box-shadow: 0 0 10px rgba(217, 119, 87, 0.5);
+}
+
+.claude-brand-text {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.brand-title {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--color-ivory);
+}
+
+.brand-divider {
+  color: var(--color-text-tertiary);
+  font-weight: 300;
+}
+
+.brand-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--color-stone);
+}
+
+/* Header Actions: Layer Depth & Procedural Ambient Sound Toggle */
+.claude-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.claude-depth-pill {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  color: var(--color-stone);
+  padding: 0.35rem 0.85rem;
+  background: rgba(14, 17, 21, 0.65);
+  border: 1px solid rgba(250, 249, 245, 0.1);
+  border-radius: 6px;
+  backdrop-filter: blur(10px);
+}
+
+.claude-sound-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.4rem 0.95rem;
+  background: rgba(14, 17, 21, 0.65);
+  border: 1px solid rgba(250, 249, 245, 0.12);
+  border-radius: 6px;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+}
+
+.claude-sound-btn:hover {
+  background: rgba(22, 26, 32, 0.85);
+  border-color: rgba(217, 119, 87, 0.5);
+  transform: translateY(-1px);
+}
+
+.claude-sound-btn.active {
+  border-color: rgba(217, 119, 87, 0.7);
+  background: rgba(28, 22, 20, 0.8);
+}
+
+/* 4-bar kinetic audio equalizer animation */
+.sound-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 12px;
+}
+
+.sound-bars .bar {
+  width: 2px;
+  height: 4px;
+  background-color: var(--color-stone);
+  border-radius: 1px;
+  transition: background-color 0.3s ease, height 0.2s ease;
+}
+
+.claude-sound-btn.active .sound-bars .bar {
+  background-color: var(--color-clay);
+}
+
+.sound-bars .bar.animating:nth-child(1) {
+  animation: soundBarDance 1.2s infinite ease-in-out;
+}
+.sound-bars .bar.animating:nth-child(2) {
+  animation: soundBarDance 0.8s infinite ease-in-out 0.2s;
+}
+.sound-bars .bar.animating:nth-child(3) {
+  animation: soundBarDance 1.4s infinite ease-in-out 0.4s;
+}
+.sound-bars .bar.animating:nth-child(4) {
+  animation: soundBarDance 1.0s infinite ease-in-out 0.1s;
+}
+
+@keyframes soundBarDance {
+  0%, 100% { height: 3px; }
+  50% { height: 12px; }
+}
+
+.sound-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--color-ivory);
+}
+
+/* Bottom Quiet Scroll Cue */
+.claude-bottom-cue {
+  position: absolute;
+  bottom: clamp(1.2rem, 3.5vh, 2.5rem);
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.scroll-pill-quiet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.scroll-pip-line {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 249, 245, 0.4),
+    rgba(250, 249, 245, 0.05)
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-pip-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: var(--color-clay);
+  box-shadow: 0 0 6px var(--color-clay);
+  animation: scrollPipAnim 2s infinite ease-in-out;
+}
+
+@keyframes scrollPipAnim {
+  0% { transform: translateY(-100%); opacity: 0; }
+  30% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(300%); opacity: 0; }
+}
+
+.scroll-caption {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.lens-overlay {
+  z-index: 6;
+  background-color: var(--color-cosmos-deep);
+}
+
+.thermal-lens-img {
+  transform: translateX(18%) scale(0.96);
+  transform-origin: center right;
+  filter: drop-shadow(0 0 50px rgba(217, 119, 87, 0.35));
+}
+
+.claude-lens-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.35rem 0.9rem;
+  background: rgba(14, 17, 22, 0.72);
+  border: 1px solid rgba(250, 249, 245, 0.12);
+  border-radius: 6px;
+  backdrop-filter: blur(12px);
+}
+
+.lens-label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-right: 0.2rem;
+}
+
+.lens-option {
+  background: none;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  padding: 0.1rem 0.3rem;
+  transition: all 0.25s var(--ease-claude);
+}
+
+.lens-option:hover {
+  color: var(--color-ivory);
+}
+
+.lens-option.active {
+  color: var(--color-clay);
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(217, 119, 87, 0.4);
+}
+
+.lens-sep {
+  color: rgba(250, 249, 245, 0.2);
+  font-size: 0.65rem;
+}
+
+.claude-dossier-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.85rem;
+  background: rgba(217, 119, 87, 0.12);
+  border: 1px solid rgba(217, 119, 87, 0.4);
+  border-radius: 6px;
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.25s var(--ease-claude);
+}
+
+.claude-dossier-btn:hover {
+  background: rgba(217, 119, 87, 0.24);
+  border-color: rgba(217, 119, 87, 0.7);
+  transform: translateY(-1px);
+}
+
+/* Dossier Modal Lightbox */
+.dossier-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 8, 11, 0.88);
+  backdrop-filter: blur(20px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeInDossier 0.35s var(--ease-claude);
+}
+
+@keyframes fadeInDossier {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.dossier-modal-window {
+  background: rgba(14, 18, 24, 0.94);
+  border: 1px solid rgba(217, 119, 87, 0.35);
+  border-radius: 16px;
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.85),
+    0 0 50px rgba(217, 119, 87, 0.15);
+  max-width: 860px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.dossier-modal-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid rgba(250, 249, 245, 0.08);
+}
+
+.dossier-headline-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.dossier-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-clay);
+}
+
+.dossier-title {
+  font-family: var(--font-monument);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--color-ivory);
+  margin: 0;
+}
+
+.dossier-close-btn {
+  background: rgba(250, 249, 245, 0.06);
+  border: 1px solid rgba(250, 249, 245, 0.12);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-ivory);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dossier-close-btn:hover {
+  background: rgba(217, 119, 87, 0.2);
+  border-color: var(--color-clay);
+  transform: rotate(90deg);
+}
+
+.dossier-modal-body {
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0d12;
+}
+
+.dossier-graphic-display {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(250, 249, 245, 0.08);
+}
+
+.dossier-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.75rem;
+  border-top: 1px solid rgba(250, 249, 245, 0.08);
+  background: rgba(10, 13, 18, 0.8);
+}
+
+.dossier-footer-meta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--color-stone);
+}
+
+.dossier-footer-meta .meta-key {
+  color: var(--color-clay);
+}
+
+.dossier-footer-meta .meta-sep {
+  margin: 0 0.5rem;
+  color: var(--color-text-tertiary);
+}
+
+.dossier-action-btn {
+  padding: 0.5rem 1.1rem;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--color-ivory);
+  background: rgba(22, 26, 32, 0.9);
+  border: 1px solid rgba(250, 249, 245, 0.16);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.dossier-action-btn:hover {
+  background: var(--color-clay);
+  border-color: var(--color-clay);
+}
+
+/* --------------------------------------------------------------------------
+   EDITORIAL CONTRAST SCRIM
+   Guarantees monumental typography legibility across all lenses and day/night scenery
+   -------------------------------------------------------------------------- */
+
+.hero-editorial-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 7;
+  background: radial-gradient(
+    ellipse at 18% 50%,
+    rgba(8, 10, 14, 0.85) 0%,
+    rgba(8, 10, 14, 0.52) 48%,
+    transparent 78%
+  );
+  transition: opacity 0.75s ease;
+  opacity: 0.75;
+}
+
+.hero-editorial-scrim.scrim-high {
+  opacity: 1;
+  background: radial-gradient(
+    ellipse at 22% 50%,
+    rgba(6, 8, 11, 0.94) 0%,
+    rgba(6, 8, 11, 0.72) 55%,
+    transparent 85%
+  );
+}
+
+/* Cryosphere Lens Styling */
+.cryosphere-lens-img {
+  transform: translateX(14%) scale(0.96);
+  transform-origin: center right;
+  filter: drop-shadow(0 0 50px rgba(120, 210, 240, 0.3));
+}
+
+/* --------------------------------------------------------------------------
+   INTERACTIVE PLANETARY OBSERVATION NODES (GLOBE PROBES)
+   -------------------------------------------------------------------------- */
+
+.planetary-nodes-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 15;
+  transition: opacity 0.5s ease;
+}
+
+.planetary-hotspot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 16;
+}
+
+.hotspot-pulse {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-clay);
+  opacity: 0.6;
+  animation: hotspotPulse 2.4s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.planetary-hotspot.critical .hotspot-pulse {
+  border-color: #e56247;
+}
+
+@keyframes hotspotPulse {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.hotspot-core {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-clay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px var(--color-clay);
+  transition: transform 0.25s var(--ease-claude);
+}
+
+.planetary-hotspot.critical .hotspot-core {
+  background: #e56247;
+  box-shadow: 0 0 14px #e56247;
+}
+
+.planetary-hotspot:hover .hotspot-core {
+  transform: scale(1.25);
+}
+
+.hotspot-index {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 700;
+  color: #0b0d10;
+}
+
+.hotspot-label-minimal {
+  position: absolute;
+  left: 20px;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ivory);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+  opacity: 0.85;
+  pointer-events: none;
+  background: rgba(10, 13, 18, 0.6);
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  border: 1px solid rgba(250, 249, 245, 0.08);
+}
+
+/* Hotspot Hover Telemetry Card */
+.hotspot-card {
+  position: absolute;
+  width: 290px;
+  padding: 1rem 1.15rem;
+  background: rgba(14, 18, 25, 0.95);
+  border: 1px solid rgba(217, 119, 87, 0.4);
+  border-radius: 10px;
+  box-shadow: 
+    0 20px 45px rgba(0, 0, 0, 0.85),
+    0 0 30px rgba(217, 119, 87, 0.15);
+  backdrop-filter: blur(16px);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  pointer-events: auto;
+  animation: cardFadeUp 0.25s var(--ease-claude);
+}
+
+.hotspot-card.card-up {
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hotspot-card.card-down {
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hotspot-card.card-left {
+  top: 50%;
+  right: 28px;
+  transform: translateY(-50%);
+}
+
+.hotspot-card.card-right {
+  top: 50%;
+  left: 28px;
+  transform: translateY(-50%);
+}
+
+@keyframes cardFadeUp {
+  from { opacity: 0; transform: translate(-50%, 8px); }
+  to { opacity: 1; }
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(250, 249, 245, 0.08);
+  padding-bottom: 0.45rem;
+}
+
+.card-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-clay);
+  font-weight: 600;
+}
+
+.card-region-tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--color-stone);
+}
+
+.card-metric-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.card-val {
+  font-family: var(--font-monument);
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--color-ivory);
+}
+
+.card-metric-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--color-text-tertiary);
+}
+
+.card-anomaly {
+  color: #e56247;
+  font-weight: 600;
+}
+
+.card-body {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--color-stone);
+  margin: 0;
+}
+
+.card-inspect-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.45rem 0.75rem;
+  background: rgba(217, 119, 87, 0.14);
+  border: 1px solid rgba(217, 119, 87, 0.35);
+  border-radius: 5px;
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 0.2rem;
+}
+
+.card-inspect-btn:hover {
+  background: rgba(217, 119, 87, 0.3);
+  border-color: var(--color-clay);
+}
+
+/* --------------------------------------------------------------------------
+   INTERACTIVE TEMPORAL SCENARIO HORIZON SCRUBBER
+   -------------------------------------------------------------------------- */
+
+.temporal-scrubber-container {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: -0.2rem;
+  margin-bottom: -0.3rem;
+  will-change: transform, opacity;
+}
+
+.scrubber-header {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--color-text-tertiary);
+}
+
+.scrubber-options-rail {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.scenario-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.65rem;
+  background: rgba(18, 22, 28, 0.6);
+  border: 1px solid rgba(250, 249, 245, 0.1);
+  border-radius: 5px;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  transition: all 0.25s var(--ease-claude);
+}
+
+.scenario-btn:hover {
+  background: rgba(26, 31, 40, 0.85);
+  border-color: rgba(250, 249, 245, 0.25);
+}
+
+.scenario-btn.selected {
+  background: rgba(217, 119, 87, 0.16);
+  border-color: var(--color-clay);
+  box-shadow: 0 0 12px rgba(217, 119, 87, 0.25);
+}
+
+.scenario-year {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-ivory);
+}
+
+.scenario-temp {
+  font-size: 0.68rem;
+  color: var(--color-clay);
+}
+
+.scenario-dynamic-insight {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: -0.5rem;
+}
+
+.insight-pulse-pip {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-clay);
+  box-shadow: 0 0 6px var(--color-clay);
+  flex-shrink: 0;
+}
+
+.insight-text {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--color-stone);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* --------------------------------------------------------------------------
+   VERTICAL INTERACTIVE EDITORIAL ALTIMETER RUNWAY
+   -------------------------------------------------------------------------- */
+
+.editorial-altimeter-runway {
+  position: absolute;
+  right: clamp(1.5rem, 3.2vw, 3.2rem);
+  top: 50%;
+  transform: translateY(-50%);
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.25rem;
+  z-index: 18;
+  pointer-events: auto;
+  user-select: none;
+}
+
+.altimeter-telemetry-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+}
+
+.altimeter-axis-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  color: var(--color-text-tertiary);
+}
+
+.altimeter-live-val {
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-clay);
+  text-shadow: 0 0 10px rgba(217, 119, 87, 0.4);
+}
+
+.altimeter-track-rail {
+  position: relative;
+  width: 2px;
+  height: 250px;
+  background: rgba(250, 249, 245, 0.12);
+  margin-right: 18px;
+}
+
+.altimeter-runner-pip {
+  position: absolute;
+  left: -4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-clay);
+  box-shadow: 0 0 12px var(--color-clay);
+  transform: translateY(-50%);
+  transition: top 0.1s linear;
+}
+
+.altimeter-node {
+  position: absolute;
+  right: -5px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-direction: row-reverse;
+}
+
+.altimeter-node-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(250, 249, 245, 0.35);
+  transition: all 0.25s ease;
+}
+
+.altimeter-node.current .altimeter-node-dot {
+  background: var(--color-clay);
+  box-shadow: 0 0 8px var(--color-clay);
+  transform: scale(1.4);
+}
+
+.altimeter-node-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  opacity: 0.45;
+  transition: opacity 0.25s ease;
+}
+
+.altimeter-node:hover .altimeter-node-details,
+.altimeter-node.current .altimeter-node-details {
+  opacity: 1;
+}
+
+.node-alt {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--color-ivory);
+}
+
+.node-label {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+/* --------------------------------------------------------------------------
+   DUAL-TAB DOSSIER MODAL STYLING
+   -------------------------------------------------------------------------- */
+
+.dossier-tab-switcher {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.dossier-tab {
+  padding: 0.32rem 0.8rem;
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 500;
+  border-radius: 5px;
+  border: 1px solid rgba(250, 249, 245, 0.12);
+  background: rgba(20, 24, 30, 0.6);
+  color: var(--color-stone);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dossier-tab:hover {
+  background: rgba(30, 36, 46, 0.8);
+  color: var(--color-ivory);
+}
+
+.dossier-tab.active {
+  background: rgba(217, 119, 87, 0.2);
+  border-color: var(--color-clay);
+  color: var(--color-ivory);
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba(217, 119, 87, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN BREAKPOINTS
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .initial-hero-column {
+    max-width: min(540px, 55vw);
+  }
+
+  .claude-lens-selector,
+  .editorial-altimeter-runway {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .initial-hero-column {
+    left: 1.5rem;
+    right: 1.5rem;
+    max-width: 100%;
+    top: 48%;
+  }
+
+  .row-prime {
+    font-size: clamp(3rem, 10vw, 4.2rem);
+  }
+
+  .row-climax {
+    font-size: clamp(3.2rem, 11vw, 4.6rem);
+  }
+
+  .claude-depth-pill,
+  .claude-lens-selector,
+  .editorial-altimeter-runway,
+  .planetary-nodes-container {
+    display: none;
+  }
+
+  .final-frame-overlay {
+    left: 1.5rem;
+    right: 1.5rem;
+    max-width: 100%;
+    bottom: 3rem;
+  }
+}
+
+

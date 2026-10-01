@@ -1,0 +1,410 @@
+/* ==========================================================================
+   GEOMETRIC HERO STYLES
+   Intelligent Climate Change Forecasting
+   Theme: Low-Poly 3D Three.js WebGL & Geometric Architectural Storytelling
+   ========================================================================== */
+
+:root {
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-accent: 'Syne', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-pixel: 'Silkscreen', monospace;
+
+  --color-obsidian: #090c11;
+  --color-white: #f8f7f4;
+  --color-muted: #8e95a0;
+  --color-terracotta: #d97757;
+  --color-emerald: #3b795c;
+  --color-cyan: #7cd5e0;
+}
+
+/* 400vh Scroll Runway */
+.geometric-hero-track {
+  position: relative;
+  width: 100%;
+  height: 400vh;
+  background-color: var(--color-obsidian);
+}
+
+/* Pinned 100vh Viewport */
+.geometric-pinned-viewport {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: var(--color-obsidian);
+  user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   THREE.JS FULLSCREEN CANVAS CONTAINER
+   Full-bleed 100vw x 100vh WebGL canvas with ZERO image borders or cutoffs!
+   -------------------------------------------------------------------------- */
+
+.three-canvas-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.three-canvas-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* --------------------------------------------------------------------------
+   CLEAN GEOMETRIC MASTHEAD
+   -------------------------------------------------------------------------- */
+
+.clean-geometric-masthead {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: clamp(1.5rem, 3.5vh, 2.5rem) clamp(2rem, 5vw, 4.5rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 30;
+  pointer-events: auto;
+}
+
+.masthead-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--color-white);
+}
+
+.brand-pixel-pip {
+  width: 7px;
+  height: 7px;
+  background-color: var(--color-terracotta);
+  border-radius: 1px;
+}
+
+.brand-sep {
+  color: rgba(248, 247, 244, 0.25);
+  font-weight: 300;
+}
+
+.brand-desc {
+  color: var(--color-muted);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+}
+
+.masthead-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.masthead-altitude {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+  padding: 0.35rem 0.75rem;
+  background: rgba(18, 23, 30, 0.65);
+  border: 1px solid rgba(248, 247, 244, 0.08);
+  border-radius: 4px;
+  backdrop-filter: blur(8px);
+}
+
+.altitude-text {
+  color: var(--color-white);
+}
+
+.geometric-sound-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(18, 23, 30, 0.65);
+  border: 1px solid rgba(248, 247, 244, 0.1);
+  border-radius: 4px;
+  color: var(--color-white);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+}
+
+.geometric-sound-toggle:hover {
+  background: rgba(28, 35, 45, 0.85);
+  border-color: var(--color-terracotta);
+}
+
+.sound-pixel-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 10px;
+}
+
+.sound-pixel-bars .bar {
+  width: 2px;
+  height: 3px;
+  background-color: var(--color-muted);
+  transition: background-color 0.2s ease;
+}
+
+.geometric-sound-toggle.active .sound-pixel-bars .bar {
+  background-color: var(--color-terracotta);
+}
+
+.sound-pixel-bars .bar.animating:nth-child(1) {
+  animation: barPulse 1s infinite ease-in-out;
+}
+.sound-pixel-bars .bar.animating:nth-child(2) {
+  animation: barPulse 0.7s infinite ease-in-out 0.2s;
+}
+.sound-pixel-bars .bar.animating:nth-child(3) {
+  animation: barPulse 1.2s infinite ease-in-out 0.4s;
+}
+
+@keyframes barPulse {
+  0%, 100% { height: 3px; }
+  50% { height: 10px; }
+}
+
+.sound-status-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--color-white);
+}
+
+/* --------------------------------------------------------------------------
+   PURE GEOMETRIC STORYTELLING TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+
+.geometric-story-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.story-act-frame {
+  position: absolute;
+  left: clamp(2.5rem, 8vw, 8.5rem);
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: min(680px, 52vw);
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  will-change: transform, opacity;
+}
+
+.act-orbit {
+  pointer-events: auto;
+}
+
+.act-narrative {
+  max-width: min(600px, 48vw);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.act-final {
+  pointer-events: auto;
+  opacity: 0;
+}
+
+/* Pixel Act Tag */
+.act-pixel-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pixel-square {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-terracotta);
+  border-radius: 1px;
+}
+
+.pixel-tag-text {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-terracotta);
+}
+
+/* Monumental Geometric Headline (Space Grotesk / Syne) */
+.geometric-monumental-headline {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+}
+
+.headline-line {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.93;
+  color: var(--color-white);
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+}
+
+.intro-line {
+  font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-terracotta);
+  margin-bottom: 0.35rem;
+  text-shadow: none;
+}
+
+.main-line {
+  font-size: clamp(3.0rem, 4.6vw, 5.4rem);
+  color: #ffffff;
+}
+
+.climax-line {
+  font-size: clamp(3.2rem, 5.0vw, 5.8rem);
+  font-family: var(--font-accent);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--color-white);
+}
+
+/* Pure Story Sentence */
+.geometric-story-sentence {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.35vw, 1.3rem);
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+  color: var(--color-muted);
+  max-width: 520px;
+  margin: 0;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+}
+
+/* Action Button: Clean Architectural Precision */
+.act-action-row {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  margin-top: 0.4rem;
+}
+
+.geometric-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.05rem 2.2rem;
+  background: rgba(22, 28, 36, 0.85);
+  border: 1px solid rgba(248, 247, 244, 0.2);
+  border-radius: 4px; /* Clean crisp corners, NOT round capsules */
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.geometric-cta-btn:hover {
+  background: var(--color-terracotta);
+  border-color: var(--color-terracotta);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(217, 119, 87, 0.35);
+}
+
+.geometric-scroll-cue {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* Narrative Titles (Acts II, III, IV) */
+.geometric-narrative-title,
+.geometric-final-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 4.4vw, 5.2rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--color-white);
+  margin: 0;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.9);
+}
+
+.geometric-narrative-sentence,
+.geometric-final-sentence {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.25vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-muted);
+  max-width: 480px;
+  margin: 0;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN BREAKPOINTS
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .story-act-frame {
+    max-width: min(540px, 60vw);
+  }
+}
+
+@media (max-width: 768px) {
+  .story-act-frame {
+    left: 1.5rem;
+    right: 1.5rem;
+    max-width: 100%;
+  }
+
+  .main-line {
+    font-size: clamp(2.8rem, 10vw, 4.2rem);
+  }
+
+  .climax-line {
+    font-size: clamp(3rem, 11vw, 4.6rem);
+  }
+
+  .geometric-narrative-title,
+  .geometric-final-title {
+    font-size: clamp(2.4rem, 8vw, 3.6rem);
+  }
+
+  .masthead-desc,
+  .masthead-altitude {
+    display: none;
+  }
+}
